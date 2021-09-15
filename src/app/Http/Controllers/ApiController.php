@@ -52,8 +52,9 @@ class ApiController extends Controller
             foreach ($User as $user) {
 
                 $totalItens = Note::where('user_id', $user->id)->count();
+
                 $nUser = [
-                    "usuarior" => $user->name,
+                    "usuario" => $user->name,
                     "total_de_Codigos" => $totalItens
                 ];
 
@@ -64,6 +65,16 @@ class ApiController extends Controller
             $notesforUser = json_encode($notesforUser, JSON_PRETTY_PRINT);
                  return response($notesforUser, 200);
      
+        }
+
+        public function notesOfUser($id) {
+
+            $totalCodesOfUser = Note::select("user_id",'id','created_at','updated_at')->where('user_id', $id)->get();
+
+            
+            $totalCodesOfUser = $totalCodesOfUser->toJson(JSON_PRETTY_PRINT);
+                 return response($totalCodesOfUser, 200);
+
         }
 
 }

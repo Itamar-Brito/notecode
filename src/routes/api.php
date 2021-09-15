@@ -18,6 +18,7 @@ Route::post('createnodes', [ApiController::class, 'createCodes']);
 Route::get('notes', [ApiController::class, 'Getnotes']);
 Route::get('totalnotes', [ApiController::class, 'CountNotes']);
 Route::get('totalNotesperUser', [ApiController::class, 'CountNotesPerUser']);
+Route::get('notesUser/{id}', [ApiController::class, 'notesOfUser']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
