@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS codenote_db;
+CREATE DATABASE IF NOT EXISTS codenote_db_testing;
