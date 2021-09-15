@@ -43,4 +43,28 @@ class ApiController extends Controller
      
         }
 
+        public function CountNotesPerUser () {
+
+            $User = User::all();
+
+            $notesforUser = [];
+
+            foreach ($User as $user) {
+
+                $totalItens = Note::where('user_id', $user->id)->count();
+
+                $nUser = [
+                    "usuario" => $user->name,
+                    "total_de_Codigos" => $totalItens
+                ];
+
+                array_push($notesforUser,$nUser);
+            }    
+
+
+            $notesforUser = json_encode($notesforUser, JSON_PRETTY_PRINT);
+                 return response($notesforUser, 200);
+     
+        }
+
 }

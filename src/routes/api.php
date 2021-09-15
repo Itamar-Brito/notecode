@@ -17,6 +17,7 @@ use App\Http\Controllers\ApiController;
 Route::post('createnodes', [ApiController::class, 'createCodes']);
 Route::get('notes', [ApiController::class, 'Getnotes']);
 Route::get('totalnotes', [ApiController::class, 'CountNotes']);
+Route::get('totalNotesperUser', [ApiController::class, 'CountNotesPerUser']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
