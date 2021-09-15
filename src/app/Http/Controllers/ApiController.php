@@ -14,11 +14,33 @@ class ApiController extends Controller
         $code->language = $request->language;
         $code->private = true;
         $code->notecode = $request->notecode;
-        $code->user_id = 1;
+        $code->user_id = 2;
         $code->save();
 
         return response()->json([
             "message" => "Code note created"
         ], 201);
         }
+
+        public function Getnotes () {
+           $notes = Note::get()->toJson(JSON_PRETTY_PRINT);
+            return response($notes, 200);
+            //$notes = Note::all();
+            //$notes = Note::count($notes);
+
+            }
+
+
+            public function CountNotes () {
+            //$notes = Note::all();
+            $notes = Note::all()->count();
+            $notes = [
+                "total_notes" => $notes,
+            ];
+            $totalNotes = json_encode($notes, JSON_PRETTY_PRINT);
+            //$totalNotes = $totalNotes->toJson(JSON_PRETTY_PRINT);
+                 return response($totalNotes, 200);
+     
+        }
+
 }
