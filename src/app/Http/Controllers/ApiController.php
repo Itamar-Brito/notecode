@@ -52,7 +52,6 @@ class ApiController extends Controller
             foreach ($User as $user) {
 
                 $totalItens = Note::where('user_id', $user->id)->count();
-
                 $nUser = [
                     "usuarior" => $user->name,
                     "total_de_Codigos" => $totalItens
