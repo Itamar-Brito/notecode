@@ -26,7 +26,7 @@
 
 <!----------------- Loop -------------------->
 @foreach ($notecodes as $mycode)
-<h6 class="grey-text text-darken-1 titleCode">{{$mycode->title}} - <i class="devicon-{{$mycode->language}}-plain"></i> </h6>
+<h6 class="grey-text text-darken-1 titleCode">{{$mycode->title}}  <i class="devicon-{{$mycode->language}}-plain"></i> </h6>
 <div class="row">
     
     <div class="col s1">
