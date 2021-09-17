@@ -1,29 +1,53 @@
 @extends('layouts.main')
 @section('titulo', "NoteCode")
 
+
+@push('scripts')
+    <style>
+        .bntActions{
+        margin: 2px; 
+        }
+        .titleCode{
+            margin-left: 110px;
+        }
+        .codeblock{
+            margin-top: -34px;
+        }
+    </style>
+@endpush
+
+
 @section('conteudo')
-<div class="row" style="margin-top: 20px;">
-
-    <div class="col s2 center" style="margin: 5px;">
-        <a href="" class="btn-flat grey lighten-1 white-text"><i class="material-icons">code</i></a>
-        <h6 class="grey-text" style="font-size: 12px">Meus Códigos</h6>
-    </div>
-    <div class="col s2 center" style="margin: 5px;">
-        <a href="" class="btn-flat grey lighten-1 white-text"><i class="material-icons">public</i></a>
-        <h6 class="grey-text" style="font-size: 12px">Códigos Públicos</h6>
-    </div>
-    <div class="col s2 center" style="margin: 5px;">
-        <a href="" class="btn-flat grey lighten-1 white-text"><i class="material-icons">code</i></a>
-        <h6 class="grey-text" style="font-size: 12px">Meus Códigos</h6>
-    </div>
-
-</div>
-
 
 <hr>
-<h5 class="grey-text">Meus Códigos</h5>
+<div class="center">
+    <h5 class="grey-text">Meus Códigos</h5>
+</div>
+
+<!----------------- Loop -------------------->
+@foreach ($notecodes as $mycode)
+<h6 class="grey-text text-darken-1 titleCode">{{$mycode->title}} - <i class="devicon-{{$mycode->language}}-plain"></i> </h6>
+<div class="row">
+    
+    <div class="col s1">
+        <a href="" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">edit</i></a>
+        <a href="" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">delete</i></a>
+        <a href="" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">content_copy</i></a>
+    </div>
+    <div class="col s11">
+<pre>   
+<code class="grey lighten-1 codeblock">{{$mycode->notecode}}</code>
+</pre>
 
 
+
+    </div>
+</div>   
+<hr>
+@endforeach
+
+
+<!----------------- End Loop -------------------->
 
 @endsection 
 
