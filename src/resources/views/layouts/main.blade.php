@@ -41,7 +41,7 @@
           <a href="/" class="brand-logo grey-text"><img src="img/logo.png" style="width: 40px;vertical-align: -8px;" alt=""> NoteCode</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down ">
             @auth
-            <li><a class="grey-text" href="/user/profile">Painel</a></li>
+            <li><a class="grey-text" href="/user/profile"><i class="material-icons">manage_accounts</i></a></li>
             
               
             <li><a class="grey-text" href="/logout" onclick="event.preventDefault();
@@ -58,6 +58,7 @@
 <main>
 <div class="container">
   <div class="row">
+      
     @if(session('msg'))
         <p class="red white-text" id="alert">{{session('msg')}}</p>
     @endif
