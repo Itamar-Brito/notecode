@@ -36,25 +36,18 @@
     
 <body>
 
-    <nav class="grey">
+    <nav class="white">
         <div class="nav-wrapper  container">
-          <a href="/" class="brand-logo "><img src="img/logo.png" style="width: 40px;vertical-align: -8px;" alt=""> NoteCode</a>
+          <a href="/" class="brand-logo grey-text"><img src="img/logo.png" style="width: 40px;vertical-align: -8px;" alt=""> NoteCode</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down ">
-            <li><a href="/chat">Chat</a></li>
-            <li><a href="/imagens">Imagens</a></li>
             @auth
-            <li><a href="/dashboard">Painel</a></li>
+            <li><a class="grey-text" href="/user/profile">Painel</a></li>
             
               
-            <li><a href="/logout" onclick="event.preventDefault();
+            <li><a class="grey-text" href="/logout" onclick="event.preventDefault();
                 document.getElementById('formlogout').submit();">Sair</a></li>
             
             @endauth
-
-            @guest
-              <li><a href="/register">Registrar</a></li>
-              <li><a href="/login"><i class="material-icons prefix text-darken-2 left">person</i>Login</a></li>
-            @endguest
             
           </ul>
         </div>
@@ -78,11 +71,13 @@
 
 </body>
 <footer>
-    
+    <!--
     <div class="row center">
         <div class="col s12 grey">
             LordHoly&copy;
         </div>
     </div>
+
+    -->
 </footer>
 </html>

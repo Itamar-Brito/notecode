@@ -2,12 +2,12 @@
 @section('titulo', "MiniChat")
 
 @section('conteudo')
-<h1>teste</h1>
+<h4>Meus Códigos</h4>
+
+
 
 @endsection 
 
-
 @push('scripts')
     
-
 @endpush

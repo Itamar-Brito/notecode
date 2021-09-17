@@ -15,7 +15,7 @@ use App\Http\Controllers\NotesController;
 |
 */
 
-Route::get('/', [NotesController::class,'index']);
+Route::get('/', [NotesController::class,'index'])->middleware('auth');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
