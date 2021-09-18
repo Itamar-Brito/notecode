@@ -13,6 +13,11 @@ class NotesController extends Controller
         $user = auth()->user()->id;
         $notecodes = Note::where('user_id', $user)->orderBy('created_at', 'DESC')->get();
         return(view('notesviews.index', compact('user', 'notecodes')));
+
+    }
+
+    public function newnote() {
         
+        return(view('notesviews.newnote'));
     }
 }

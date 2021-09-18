@@ -1,5 +1,9 @@
 @extends('layouts.main')
-@section('titulo', "MiniChat")
+@section('titulo', "Notecode")
+@push('styles')
+    
+
+@endpush
 
 @section('conteudo')
 

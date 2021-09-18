@@ -65,7 +65,7 @@
     <div class="row" style="margin-top: 20px;">
 
         <div class="col s1 center" style="margin: 15px;">
-            <a href="" class="btn-flat grey lighten-1 white-text"><i class="material-icons">post_add</i></a>
+            <a href="/newnote" class="btn-flat grey lighten-1 white-text"><i class="material-icons">post_add</i></a>
             <h6 class="grey-text" style="font-size: 12px">Novo Código</h6>
         </div>
         <div class="col s1 center" style="margin: 15px;">
@@ -73,7 +73,7 @@
             <h6 class="grey-text" style="font-size: 12px">Códigos Públicos</h6>
         </div>
         <div class="col s1 center" style="margin: 15px;">
-            <a href="" class="btn-flat grey lighten-1 white-text"><i class="material-icons">code</i></a>
+            <a href="/" class="btn-flat grey lighten-1 white-text"><i class="material-icons">code</i></a>
             <h6 class="grey-text" style="font-size: 12px">Meus Códigos</h6>
         </div>
     
@@ -89,8 +89,12 @@
 </main>
 
 @stack('scripts')
-<script>hljs.initHighlightingOnLoad();
 
+<script>hljs.initHighlightingOnLoad();
+  $(document).ready(function(){
+    $('.modal').modal();
+    $('select').formSelect();
+  });
     /*document.querySelectorAll("code").forEach(function(element) {
         element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     });
