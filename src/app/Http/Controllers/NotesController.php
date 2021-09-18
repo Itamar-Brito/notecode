@@ -20,4 +20,19 @@ class NotesController extends Controller
         
         return(view('notesviews.newnote'));
     }
+
+    public function createCodesform (Request $request) {
+
+        $code = new Note;
+        $code->title = $request->title;
+        $code->language = $request->language;
+        
+        $code->private = $request->private=="on" ? 1:0;
+        $code->notecode = $request->notecode;
+        $code->user_id = auth()->user()->id;
+        $code->save();
+
+        return redirect('/');
+        }
+
 }

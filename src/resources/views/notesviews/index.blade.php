@@ -36,13 +36,13 @@
 <div class="row">
     
     <div class="col s1">
-        <a href="" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">edit</i></a>
-        <a href="" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">delete</i></a>
-        <a href="" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">content_copy</i></a>
+        <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$mycode->id}})"><i class="material-icons">content_copy</i></a>
+        <a  class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">edit</i></a>
+        <a  class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">delete</i></a>
     </div>
     <div class="col s11">
 <pre>   
-<code class="grey lighten-1 codeblock">{{$mycode->notecode}}</code>
+<code class="grey lighten-1 codeblock" id="codeblock{{$mycode->id}}">{{$mycode->notecode}}</code>
 </pre>
 
 
@@ -58,5 +58,21 @@
 @endsection 
 
 @push('scripts')
+<script>
+    function copyToClipboard(id) {
+      /* Get the text field */
+      var copyText = document.getElementById("codeblock"+id).innerText;
     
+      /* Select the text field  
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);  For mobile devices */
+    
+       /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText);
+    
+      /* Alert the copied text */
+      M.toast({html: 'Código Copiado!'})
+    }
+        
+    </script> 
 @endpush

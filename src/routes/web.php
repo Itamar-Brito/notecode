@@ -18,6 +18,8 @@ use App\Http\Controllers\NotesController;
 Route::get('/', [NotesController::class,'index'])->middleware('auth');
 Route::get('/newnote', [NotesController::class,'newnote'])->middleware('auth');
 
+Route::post('/create', [NotesController::class,'createCodesform'])->middleware('auth');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
