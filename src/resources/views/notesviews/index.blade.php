@@ -44,11 +44,10 @@
 <pre>   
 <code class="grey lighten-1 codeblock" id="codeblock{{$mycode->id}}">{{$mycode->notecode}}</code>
 </pre>
-
-
+<div class="right">{{$mycode->created_at->format('d/m/Y')}}</div>
 
     </div>
-</div>   
+</div> 
 <hr>
 @endforeach
 
