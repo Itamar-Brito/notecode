@@ -45,7 +45,7 @@
                       <label>Liguagem</label>
                     </div>
                     <div class="input-field col s12">
-                        Código:
+                        <spam class="grey-text">Código:</spam>
                         <textarea id="textarea1" class="materialize-textarea"></textarea>
                       </div>
                   </div>
