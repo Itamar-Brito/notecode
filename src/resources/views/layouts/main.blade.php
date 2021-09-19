@@ -79,10 +79,7 @@
     
     </div>
 
-    @if(session('msg'))
-        <p class="red white-text" id="alert">{{session('msg')}}</p>
-    @endif
-
+   
     @yield('conteudo')
   </div>
 </div>
@@ -99,6 +96,9 @@
         element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     });
     */</script>
+        @if(session('msg'))
+          <script>M.toast({html: '{{session('msg')}}'})</script>
+        @endif
 </body>
 <footer>
     <!--

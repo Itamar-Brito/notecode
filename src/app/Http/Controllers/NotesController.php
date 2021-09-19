@@ -35,4 +35,11 @@ class NotesController extends Controller
         return redirect('/');
         }
 
+        public function editnote(Request $request){
+            
+            Note::findOrFail($request->id)->update($request->all());
+
+            return redirect('/')->with('msg','Código editado com sucesso!');
+        }
+
 }

@@ -37,16 +37,27 @@
     
     <div class="col s1">
         <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$mycode->id}})"><i class="material-icons">content_copy</i></a>
-        <a  class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">edit</i></a>
+        <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="editcode({{$mycode->id}})"><i class="material-icons">edit</i></a>
         <a  class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">delete</i></a>
     </div>
-    <div class="col s11">
+    <div class="col s11" id="Codediv{{$mycode->id}}">
 <pre>   
-<code class="grey lighten-1 codeblock" id="codeblock{{$mycode->id}}">{{$mycode->notecode}}</code>
+<code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$mycode->id}}">{{$mycode->notecode}}</code>
 </pre>
 <div class="right">{{$mycode->created_at->format('d/m/Y')}}</div>
 
     </div>
+<div class="col hide s11" id="CodeEdit{{$mycode->id}}">
+    <form action="note-edit/{{$mycode->id}}" method="POST">
+        @csrf
+        @method('PUT')
+            <textarea id="codearea{{$mycode->id}}" name="notecode" style="height: 200px;border-style:groove;border-color: rgb(179, 179, 179);" class="materialize-textarea">{{$mycode->notecode}}</textarea>
+            <a class="btn red lighten-1 white-text" onclick="canceledit({{$mycode->id}})">Cancelar</a>
+            <button class="btn waves-effect waves-light grey" type="submit">Salvar
+            <i class="material-icons right">save</i>
+    </button>
+    </form>
+</div>
 </div> 
 <hr>
 @endforeach
@@ -62,16 +73,18 @@
       /* Get the text field */
       var copyText = document.getElementById("codeblock"+id).innerText;
     
-      /* Select the text field  
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);  For mobile devices */
-    
-       /* Copy the text inside the text field */
       navigator.clipboard.writeText(copyText);
     
-      /* Alert the copied text */
       M.toast({html: 'Código Copiado!'})
     }
-        
+    
+    function editcode(id){
+        $('#CodeEdit'+id).removeClass('hide')
+        $('#Codediv'+id).addClass('hide')
+    }
+    function canceledit(id){
+        $('#CodeEdit'+id).addClass('hide')
+        $('#Codediv'+id).removeClass('hide')
+    }
     </script> 
 @endpush
