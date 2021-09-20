@@ -44,7 +44,7 @@
 <pre>   
 <code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$mycode->id}}">{{$mycode->notecode}}</code>
 </pre>
-<div class="right">{{$mycode->created_at->format('d/m/Y')}}</div>
+<div class="right">{{$mycode->created_at->format('d/m/Y - H:i')}}</div>
 
     </div>
 <div class="col hide s11" id="CodeEdit{{$mycode->id}}">
