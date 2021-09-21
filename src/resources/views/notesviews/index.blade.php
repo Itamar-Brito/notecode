@@ -38,15 +38,13 @@
     <div class="col s1">
         <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$mycode->id}})"><i class="material-icons">content_copy</i></a>
         <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="editcode({{$mycode->id}})"><i class="material-icons">edit</i></a>
-        <a onclick="event.preventDefault();
-        document.getElementById('formdelete').submit();" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">delete</i></a>
+        <a href="#modal{{$mycode->id}}" class="btn-flat grey lighten-2 grey-text bntActions modal-trigger"><i class="material-icons">delete</i></a>
     </div>
     <div class="col s11" id="Codediv{{$mycode->id}}">
         <div >
-            <form id='formdelete' action="note-delete/{{$mycode->id}}" method="post">
+        <form id='formdelete{{$mycode->id}}' action="note-delete/{{$mycode->id}}" method="post">
              @csrf
                 @method('DELETE')
-            
             </form>
         </div>
 <pre>   
@@ -68,6 +66,19 @@
 </div>
 </div> 
 <hr>
+<!-- Modal Structure -->
+<div id="modal{{$mycode->id}}" class="modal">
+    <div class="modal-content">
+      <h4>Deletar Código!</h4>
+      <p>Deseja mesmo deletar o Código: <b>{{$mycode->title}}</b>  </p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+      <a onclick="event.preventDefault();
+      document.getElementById('formdelete{{$mycode->id}}').submit();" class="modal-close waves-effect waves-green btn-flat red - white-text"><i class="material-icons left">delete</i>Excluir</a>
+      
+    </div>
+  </div>
 @endforeach
 
 

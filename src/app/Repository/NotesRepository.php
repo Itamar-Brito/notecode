@@ -7,15 +7,12 @@ use Illuminate\Http\Request;
 
 class NotesRepository
 {
-
     private $model;
-
 
     public function __construct()
     {
         $this->model = new Note;
     }
-
 
     public function create(Request $request, bool $fromApi = false)
     {
@@ -30,8 +27,8 @@ class NotesRepository
     }
 
     public function destroy($id) {
-        //Imagen::findOrFail($id)->delete()
         
+              //Note::findOrFail($id)->delete()
         $this->model->findOrFail($id)->delete();
 
     }
