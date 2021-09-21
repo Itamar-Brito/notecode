@@ -26,7 +26,7 @@ class NotesController extends Controller
         $repository = new NotesRepository;
         $repository->create($request);
 
-        return redirect('/');
+        return redirect('/')->with('msg', 'Código Criado com sucesso!');;
     }
 
     public function editnote(Request $request)
@@ -35,5 +35,13 @@ class NotesController extends Controller
         Note::findOrFail($request->id)->update($request->all());
 
         return redirect('/')->with('msg', 'Código editado com sucesso!');
+    }
+
+    public function deleteCodesForm($id)
+    {
+        $repository = new NotesRepository;
+        $repository->destroy($id);
+
+        return redirect('/')->with('msg', 'Código deletado com sucesso!');
     }
 }

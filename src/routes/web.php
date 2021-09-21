@@ -20,6 +20,9 @@ Route::get('/newnote', [NotesController::class,'newnote'])->middleware('auth');
 
 Route::post('/create', [NotesController::class,'createCodesform'])->middleware('auth');
 Route::put('note-edit/{id}', [NotesController::class,'editnote'])->middleware('auth');
+Route::delete('note-delete/{id}', [NotesController::class,'deleteCodesForm'])->middleware('auth');
+
+//Route::delete('imagens/{id}',[ImagemController::class, 'destroy'])->middleware('auth');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

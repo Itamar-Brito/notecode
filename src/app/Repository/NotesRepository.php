@@ -29,4 +29,10 @@ class NotesRepository
         return $this->model;
     }
 
+    public function destroy($id) {
+        //Imagen::findOrFail($id)->delete()
+        
+        $this->model->findOrFail($id)->delete();
+
+    }
 }

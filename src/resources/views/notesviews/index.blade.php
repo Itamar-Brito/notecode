@@ -38,9 +38,17 @@
     <div class="col s1">
         <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$mycode->id}})"><i class="material-icons">content_copy</i></a>
         <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="editcode({{$mycode->id}})"><i class="material-icons">edit</i></a>
-        <a  class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">delete</i></a>
+        <a onclick="event.preventDefault();
+        document.getElementById('formdelete').submit();" class="btn-flat grey lighten-2 grey-text bntActions"><i class="material-icons">delete</i></a>
     </div>
     <div class="col s11" id="Codediv{{$mycode->id}}">
+        <div >
+            <form id='formdelete' action="note-delete/{{$mycode->id}}" method="post">
+             @csrf
+                @method('DELETE')
+            
+            </form>
+        </div>
 <pre>   
 <code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$mycode->id}}">{{$mycode->notecode}}</code>
 </pre>
