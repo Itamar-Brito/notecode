@@ -17,6 +17,7 @@ use App\Http\Controllers\NotesController;
 
 Route::get('/', [NotesController::class,'index'])->middleware('auth');
 Route::get('/newnote', [NotesController::class,'newnote'])->middleware('auth');
+Route::get('/publicnotes', [NotesController::class,'publicNote'])->middleware('auth');
 
 Route::post('/create', [NotesController::class,'createCodesform'])->middleware('auth');
 Route::put('note-edit/{id}', [NotesController::class,'editnote'])->middleware('auth');

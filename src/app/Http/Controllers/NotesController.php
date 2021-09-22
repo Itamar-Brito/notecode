@@ -44,4 +44,9 @@ class NotesController extends Controller
 
         return redirect('/')->with('msg', 'Código deletado com sucesso!');
     }
+
+    public function publicNote()
+    {
+        return view('notesviews.publicnotes');
+    }
 }
