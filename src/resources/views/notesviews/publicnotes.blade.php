@@ -15,6 +15,11 @@
 @foreach ($AllNotes  as $notes)
     {{$notes->user->name}} <br>
     {{$notes->notecode}}
+    
+    <br><br>
+    @foreach ($notes->coments as $comentario)
+        {{$comentario->coment}} - {{$comentario->user}} <br>
+    @endforeach
     <hr>
 @endforeach
 

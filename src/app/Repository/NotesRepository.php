@@ -35,6 +35,6 @@ class NotesRepository
 
     public function getAll()
     {    
-        return $this->model->with('user')->get();
+        return $this->model->with('user','coments')->get();
     }
 }
