@@ -69,13 +69,14 @@
             <h6 class="grey-text" style="font-size: 12px">Novo Código</h6>
         </div>
         <div class="col s1 center" style="margin: 15px;">
+          <a href="/" class="btn-flat grey lighten-1 white-text"><i class="material-icons">code</i></a>
+          <h6 class="grey-text" style="font-size: 12px">Meus Códigos</h6>
+        </div>
+        <div class="col s1 center" style="margin: 15px;">
             <a href="/publicnotes" class="btn-flat grey lighten-1 white-text"><i class="material-icons">public</i></a>
             <h6 class="grey-text" style="font-size: 12px">Códigos Públicos</h6>
         </div>
-        <div class="col s1 center" style="margin: 15px;">
-            <a href="/" class="btn-flat grey lighten-1 white-text"><i class="material-icons">code</i></a>
-            <h6 class="grey-text" style="font-size: 12px">Meus Códigos</h6>
-        </div>
+
     
     </div>
 

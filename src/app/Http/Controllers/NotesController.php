@@ -47,6 +47,8 @@ class NotesController extends Controller
 
     public function publicNote()
     {
-        return view('notesviews.publicnotes');
+        $AllNotes = new NotesRepository;
+        $AllNotes = $AllNotes->getAll();
+        return view('notesviews.publicnotes', compact('AllNotes'));
     }
 }

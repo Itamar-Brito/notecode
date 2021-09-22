@@ -26,10 +26,15 @@ class NotesRepository
         return $this->model;
     }
 
-    public function destroy($id) {
-        
-              //Note::findOrFail($id)->delete()
+    public function destroy($id) 
+    {
+                      //Note::findOrFail($id)->delete()
         $this->model->findOrFail($id)->delete();
 
+    }
+
+    public function getAll()
+    {    
+        return $this->model->with('user')->get();
     }
 }
