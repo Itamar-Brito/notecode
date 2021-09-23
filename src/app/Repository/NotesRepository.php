@@ -33,8 +33,12 @@ class NotesRepository
 
     }
 
-    public function getAll()
+    public function getAllpublic()
     {    
-        return $this->model->with('user','coments')->get();
+        return $this->model
+            ->where('private', 0)
+            ->with('user','coments')
+            ->orderBy('created_at', 'DESC')
+            ->get();
     }
 }

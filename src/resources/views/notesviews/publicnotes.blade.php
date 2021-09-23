@@ -2,6 +2,15 @@
 @section('titulo', "Notecode")
 
 @push('styles')
+    <style>
+        .datapost{
+            font-size: 12px;
+        }
+        .coments, .coment{
+            margin: 5px;
+            padding-top: 25px;
+        }
+    </style>
 @endpush
 
 @section('conteudo')
@@ -11,16 +20,37 @@
     </div>
     
 </div>
-
 @foreach ($AllNotes  as $notes)
-    {{$notes->user->name}} <br>
-    {{$notes->notecode}}
-    
-    <br><br>
-    @foreach ($notes->coments as $comentario)
-        {{$comentario->coment}} - {{$comentario->user}} <br>
+<div class="row">
+    <div class="col s12">
+            <h5><i class="devicon-{{$notes->language}}-plain"></i> {{$notes->title}} </h5>
+            <span class="datapost"><i> Postado: {{$notes->created_at->format('d/m/Y - H:i')}} - <b>{{$notes->user->name}}</b></i> </span>
+        <pre><code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$notes->id}}">{{$notes->notecode}}</code></pre>      
+    </div>
+    <div class="col s11 push-s1">
+        Comentarios:
+    </div>
+    @php
+        $cont = 0;
+    @endphp
+    @foreach ($notes->coments as $coment)
+        @php
+           $cont++;
+        @endphp
+        @if ($cont<=4)
+            <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments">
+                <spam class="coment"> <b>{{$coment->user}}:</b>   {{$coment->coment}}</spam>
+            </div>
+        @endif
+        @if ($cont>=4)
+            <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments right">
+                <a href="" class="btn-tiny grey lighten-2">ver todos</a>
+            </div>
+        @endif
     @endforeach
-    <hr>
+
+</div>
+<hr>
 @endforeach
 
 @endsection 
