@@ -42,13 +42,13 @@
                 <spam class="coment"> <b>{{$coment->user}}:</b>   {{$coment->coment}}</spam>
             </div>
         @endif
-        @if ($cont>=4)
-            <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments right">
-                <a href="" class="btn-tiny grey lighten-2">ver todos</a>
-            </div>
-        @endif
-    @endforeach
 
+    @endforeach
+    @if ($cont>=4)
+        <div class="col s2 push-s1 left">
+            <a href="" class="">ver todos</a>
+        </div>
+    @endif
 </div>
 <hr>
 @endforeach
