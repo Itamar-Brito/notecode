@@ -45,8 +45,8 @@
 
     @endforeach
     @if ($cont>=4)
-        <div class="col s2 push-s1 left">
-            <a href="" class="">ver todos</a>
+        <div class="col s4 push-s1 left">
+            <a href="" class="">Ver todos os {{$cont}} comentários... </a>
         </div>
     @endif
 </div>
