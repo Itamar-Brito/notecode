@@ -72,7 +72,7 @@ class ApiController extends Controller
         return response($totalCodesOfUser, 200);
     }
 
-
+    
     public function adressofUser($id)
     {
         $cep = User::where('id', $id)->first();

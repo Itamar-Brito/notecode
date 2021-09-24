@@ -19,6 +19,9 @@ Route::get('/', [NotesController::class,'index'])->middleware('auth');
 Route::get('/newnote', [NotesController::class,'newnote'])->middleware('auth');
 Route::get('/publicnotes', [NotesController::class,'publicNote'])->middleware('auth');
 
+//ajax comentar
+Route::get('/comentar-note/{id}/coment/{coment}', [NotesController::class,'comentNote'])->middleware('auth');
+
 Route::post('/create', [NotesController::class,'createCodesform'])->middleware('auth');
 Route::put('note-edit/{id}', [NotesController::class,'editnote'])->middleware('auth');
 Route::delete('note-delete/{id}', [NotesController::class,'deleteCodesForm'])->middleware('auth');
