@@ -49,6 +49,7 @@ class NotesController extends Controller
     {
         $AllNotes = new NotesRepository;
         $AllNotes = $AllNotes->getAllpublic();
-        return view('notesviews.publicnotes', compact('AllNotes'));
+        $loggedUser = auth()->user()->name;
+        return view('notesviews.publicnotes', compact('AllNotes','loggedUser'));
     }
 }
