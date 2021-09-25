@@ -14,6 +14,7 @@ class NotesRepository
         $this->model = new Note;
     }
 
+
     public function create(Request $request, bool $fromApi = false)
     {
         $this->model->title = $request->title;
@@ -26,11 +27,26 @@ class NotesRepository
         return $this->model;
     }
 
+
     public function destroy($id) 
     {
                       //Note::findOrFail($id)->delete()
         $this->model->findOrFail($id)->delete();
 
+    }
+
+    public function getAllprivateNotes(){
+        $user = auth()->user()->id;
+        //Note::where('user_id', $user)->orderBy('created_at', 'DESC')->get();
+        return $this->model->where('user_id', $user)->orderBy('created_at', 'DESC')->get();
+    }
+
+    public function searchByTerm($term){
+        return Note::where([
+            ['title', 'like', '%' . $term . '%']
+        ])->orWhere([
+            ['notecode', 'like', '%' . $term . '%']
+        ])->orderBy('created_at', 'DESC')->get();
     }
 
     public function getAllpublic()

@@ -18,7 +18,7 @@
     
         }
 
-    </style>
+     </style>
 @endpush
 
 @section('conteudo')
@@ -32,7 +32,8 @@
     <div class="col s12" id="post{{$notes->id}}">
             <h5><i class="devicon-{{$notes->language}}-plain"></i> {{$notes->title}} </h5>
             <span class="datapost"><i> Postado: {{$notes->created_at->format('d/m/Y - H:i')}} - <b>{{$notes->user->name}}</b></i> </span>
-        <pre><code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$notes->id}}">{{$notes->notecode}}</code></pre> 
+        <pre><code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$notes->id}}">{{$notes->notecode}}</code></pre>         <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$notes->id}})"><i class="material-icons">content_copy</i></a>
+
 
     </div>
     @php
@@ -84,7 +85,15 @@
 
 @push('scripts')
 <script>
+    function copyToClipboard(id) {
+      /* Get the text field */
+      var copyText = document.getElementById("codeblock"+id).innerText;
     
+      navigator.clipboard.writeText(copyText);
+    
+      M.toast({html: 'Código Copiado!'})
+    }
+
     function comentar(id,coment){
                 //comentar-note/{id}/coment/{coment}',
         var url = 'comentar-note/'+id+'/coment/'+coment;

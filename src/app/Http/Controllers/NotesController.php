@@ -12,8 +12,19 @@ class NotesController extends Controller
     public function index()
     {
         $user = auth()->user()->id;
-        $notecodes = Note::where('user_id', $user)->orderBy('created_at', 'DESC')->get();
-        return (view('notesviews.index', compact('user', 'notecodes')));
+
+        $buscacode = request('buscacode');
+
+        $myCodes = new NotesRepository;
+
+        if ($buscacode ) { 
+            $notecodes = $myCodes->searchByTerm($buscacode);
+        }else{
+            $notecodes = $myCodes->getAllprivateNotes();
+        }
+
+
+        return (view('notesviews.index', compact('user', 'notecodes','buscacode')));
     }
 
     public function newnote()

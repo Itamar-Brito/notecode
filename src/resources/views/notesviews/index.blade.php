@@ -13,6 +13,10 @@
         .codeblock{
             margin-top: -34px;
         }
+        .codigo{
+            font-size: 23px;
+            padding: 40px;
+        }
     </style>
 @endpush
 
@@ -21,9 +25,33 @@
 
 <hr>
 <div class="center">
-    <h5 class="grey-text">Meus Códigos</h5>
+    <h5 class="grey-text">Meus Códigos</h5><br>
 </div>
 
+@if (count($notecodes)==0)
+    <p class="codigo grey-text"> Crie uma anotação para nunca mais precisar buscar em seus projetos antigos! <a href="newnote">Adicionar</a></p>
+@else
+<div class="row">
+    <nav class="col s4 push-s4 grey lighten-1">
+        <div class="nav-wrapper">
+          <form action="/" method="GET">
+            <div class="input-field  ">
+              <input id="search" type="search" required name="buscacode">
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </nav>
+      @if ($buscacode)
+    <div class="col s12 l12 center"  id="buscoupor">
+        <h6>Você buscou por: <b>{{ $buscacode}}</b></h6>
+    </div>
+@endif
+</div>
+@endif
+
+<hr>
 <!----------------- Loop -------------------->
 @foreach ($notecodes as $mycode)
 <h6 class="grey-text text-darken-1 titleCode">
@@ -88,7 +116,7 @@
 
 @push('scripts')
 <script>
-    function copyToClipboard(id) {
+      function copyToClipboard(id) {
       /* Get the text field */
       var copyText = document.getElementById("codeblock"+id).innerText;
     
