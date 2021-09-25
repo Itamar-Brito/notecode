@@ -42,11 +42,14 @@ class NotesRepository
     }
 
     public function searchByTerm($term){
-        return Note::where([
+        return $this->model
+        ->where([
             ['title', 'like', '%' . $term . '%']
-        ])->orWhere([
+        ])
+        ->orWhere([
             ['notecode', 'like', '%' . $term . '%']
-        ])->orderBy('created_at', 'DESC')->get();
+        ])
+        ->orderBy('created_at', 'DESC')->get();
     }
 
     public function getAllpublic()

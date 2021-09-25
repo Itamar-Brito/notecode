@@ -43,14 +43,14 @@
           </form>
         </div>
       </nav>
-      @if ($buscacode)
-    <div class="col s12 l12 center"  id="buscoupor">
-        <h6>Você buscou por: <b>{{ $buscacode}}</b></h6>
-    </div>
-@endif
 </div>
 @endif
-
+@if ($buscacode)
+    <div class="col s12 l12 center"  id="buscoupor">
+        <h6>Você buscou por: <b>{{ $buscacode}}</b></h6>  <a href="/">Voltar</a> <hr>
+    </div>
+   
+@endif
 <hr>
 <!----------------- Loop -------------------->
 @foreach ($notecodes as $mycode)
