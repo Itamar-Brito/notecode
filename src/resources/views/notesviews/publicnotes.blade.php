@@ -68,7 +68,7 @@
     <!-- FORM PARA -->
     <div class="row">
             <div class="col s7 push-s1 input-field" id="comentar{{$notes->id}}">
-                <input type="text" class="" name="comentario" placeholder="Novo comentário" id="comentario{{$notes->id}}">
+                <input type="text" class="comentarioInput" name="comentFF" placeholder="Novo comentário" id="comentario{{$notes->id}}">
             </div>
             <div class="col s1 push-s1 " style="padding-top: 25px;">
                 <a href="#post{{$notes->id}}" onclick="comentar({{$notes->id}},document.getElementById('comentario{{$notes->id}}').value)"><i class="material-icons left grey-text">send</i></a>
@@ -100,12 +100,29 @@
             if ( xhttp.readyState == 4 && xhttp.status == 200 ) {
                 comentList.innerHTML +='<div class="col s11 push-s1 z-depth-2 grey lighten-2 coments"><spam class="coment"> <b>'+usuario+': </b>'+coment+'</spam></div>';
                 document.getElementById('comentario'+id).value = '';
-                M.toast({html: 'Comentário enviado!'});
+                M.toast({html: 'Comentário enviado!',classes: 'green darken-4 white-text'});
 
             }
         }
 
         xhttp.send();//A execução do script CONTINUARÁ mesmo que a requisição não tenha retornado do servidor
     }
+    
+    @foreach ($AllNotes  as $notes)
+
+        document.getElementById("comentario{{$notes->id}}").addEventListener('keypress', function (e) {
+        var key = e.which || e.keyCode;
+            var comentario = document.getElementById('comentario{{$notes->id}}').value;
+            
+                if (key === 13) {
+                    if (comentario != ''){
+                    comentar({{$notes->id}},comentario);
+                    }else{
+                     M.toast({html: 'Comentário em branco!', classes: 'red darken-4 white-text'});
+                    }
+                }
+            }
+        );
+    @endforeach
 </script>
 @endpush

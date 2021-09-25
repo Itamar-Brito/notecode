@@ -29,7 +29,8 @@ Route::delete('note-delete/{id}', [NotesController::class,'deleteCodesForm'])->m
 
 //Route::delete('imagens/{id}',[ImagemController::class, 'destroy'])->middleware('auth');
 
-
+/*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+*/
