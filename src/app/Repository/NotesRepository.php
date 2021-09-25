@@ -30,9 +30,8 @@ class NotesRepository
 
     public function destroy($id) 
     {
-                      //Note::findOrFail($id)->delete()
+             //Note::findOrFail($id)->delete()
         $this->model->findOrFail($id)->delete();
-
     }
 
     public function getAllprivateNotes(){
