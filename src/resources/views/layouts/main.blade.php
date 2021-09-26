@@ -41,7 +41,7 @@
 
     <nav class="white">
         <div class="nav-wrapper  container">
-          <a href="/" class="brand-logo grey-text"><img src="img/logo.png" style="width: 40px;vertical-align: -8px;" alt=""> NoteCode</a>
+          <a href="/" class="brand-logo grey-text"><img src="../img/logo.png" style="width: 40px;vertical-align: -8px;" alt=""> NoteCode</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down ">
             @auth
             <!-- <li><a class="grey-text" href="/user/profile"><i class="material-icons">manage_accounts</i></a></li> -->

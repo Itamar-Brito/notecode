@@ -6,6 +6,10 @@
             margin: 5px;
             padding-top: 25px;
         }
+        .comentDate{
+            font-size: 12px;
+            color: dimgray
+        }
     </style>
 
 @endpush
@@ -24,28 +28,63 @@
             Comentários:
         </div>
     </div>
-        @foreach ($getNote->coments as $coment)
-        
-            
-                <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments">
-                    <spam class="coment"> <b>{{$coment->user}}:</b>   {{$coment->coment}}</spam>
-                </div>
-        
-    
 
-    @endforeach
+        <div id="comentlist">
+            @foreach ($getNote->coments as $coment)
+                    <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments">
+                        <spam class="coment"> <b>{{$coment->user}}:</b>   {{$coment->coment}}</spam> <span class='right comentDate'>{{$coment->created_at->format('d/m/Y - H:i')}} 
+                        @if ($coment->user==auth()->user()->name)  
+                            <a href=""><i class="material-icons" style="vertical-align: -6px; color: dimgray" >delete</i></a>
+                        @endif</span>
+                    </div>
+            @endforeach
+        </div>
+
+
+    <div class="row">
+        <div class="col s7 push-s1 input-field" >
+            <input type="text" class="comentarioInput" name="comentFF" placeholder="Novo comentário" id="comentarioInput">
+        </div>
+        <div class="col s1 push-s1 " style="padding-top: 25px;">
+            <a  onclick="comentar({{$getNote->id}},document.getElementById('comentarioInput').value)"><i class="material-icons left grey-text">send</i></a>
+        </div>
+    </div>
+
 @endsection 
+
 
 
 @push('scripts')
     <script>
-              function copyToClipboard(id) {
-      /* Get the text field */
-      var copyText = document.getElementById("codeblockk"+id).innerText;
-    
-      navigator.clipboard.writeText(copyText);
-    
-      M.toast({html: 'Código Copiado!'})
+        function comentar(id,coment){
+                //comentar-note/{id}/coment/{coment}',
+        var url = '/comentar-note/'+id+'/coment/'+coment;
+        var comentList = document.getElementById('comentlist');
+        var usuario = "{{auth()->user()->name}}"
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", url, true);
+
+            //Função a ser chamada quando a requisição retornar do servidor
+        xhttp.onreadystatechange = function(){
+            //Verifica se o retorno do servidor deu certo
+            if ( xhttp.readyState == 4 && xhttp.status == 200 ) {
+                M.toast({html: 'Comentário enviado!',classes: 'green darken-4 white-text'});
+                document.getElementById('comentarioInput').value = '';
+                comentList.innerHTML +='<div class="col s11 push-s1 z-depth-2 grey lighten-2 coments"><spam class="coment"> <b>'+usuario+': </b>'+coment+'</spam></div>';
+
+            }
+        }
+
+        xhttp.send();//A execução do script CONTINUARÁ mesmo que a requisição não tenha retornado do servidor
+    }
+
+
+    //copy to clipboard
+    function copyToClipboard(id) {
+        var copyText = document.getElementById("codeblockk"+id).innerText;
+        navigator.clipboard.writeText(copyText);
+        M.toast({html: 'Código Copiado!'})
     }
     </script>
 
