@@ -63,7 +63,7 @@
     </div>
     @if ($cont>4)
         <div class="col s12 push-s1 left">
-            <a href="" class="">Ver todos os {{$cont}} comentários... </a>
+            <a href="/shownote/{{$notes->id}}" class="">Ver todos os {{$cont}} comentários... </a>
         </div>
     @endif
     <!-- FORM PARA -->

@@ -17,14 +17,14 @@ class NotesController extends Controller
 
         $myCodes = new NotesRepository;
 
-        if ($buscacode ) { 
+        if ($buscacode) {
             $notecodes = $myCodes->searchByTerm($buscacode);
-        }else{
+        } else {
             $notecodes = $myCodes->getAllprivateNotes();
         }
 
 
-        return (view('notesviews.index', compact('user', 'notecodes','buscacode')));
+        return (view('notesviews.index', compact('user', 'notecodes', 'buscacode')));
     }
 
     public function newnote()
@@ -61,6 +61,14 @@ class NotesController extends Controller
         $AllNotes = new NotesRepository;
         $AllNotes = $AllNotes->getAllpublic();
         $loggedUser = auth()->user()->name;
-        return view('notesviews.publicnotes', compact('AllNotes','loggedUser'));
+        return view('notesviews.publicnotes', compact('AllNotes', 'loggedUser'));
+    }
+
+    public function showNote($id)
+    {
+        $note = new NotesRepository;
+        $getNote = $note->show($id);
+
+        return view('notesviews.shownote', compact('getNote'));
     }
 }

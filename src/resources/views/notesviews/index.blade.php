@@ -2,7 +2,7 @@
 @section('titulo', "NoteCode")
 
 
-@push('scripts')
+@push('styles')
     <style>
         .bntActions{
         margin: 2px; 
@@ -116,6 +116,7 @@
 
 @push('scripts')
 <script>
+
       function copyToClipboard(id) {
       /* Get the text field */
       var copyText = document.getElementById("codeblock"+id).innerText;

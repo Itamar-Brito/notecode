@@ -10,13 +10,13 @@ use App\Repository\NotesRepository;
 
 class ComentController extends Controller
 {
-    public function postComent($id,$coment){
+    public function postComent($id,$coment)
+    {
         $request = new Coment;
         $request->coment = $coment;
         $request->user = auth()->user()->name;
         $request->note_id = $id;
         $request->save();
-        
     }
 
 }

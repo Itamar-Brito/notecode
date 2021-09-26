@@ -28,34 +28,47 @@ class NotesRepository
     }
 
 
-    public function destroy($id) 
+    public function destroy($id)
     {
-             //Note::findOrFail($id)->delete()
+        //Note::findOrFail($id)->delete()
         $this->model->findOrFail($id)->delete();
     }
 
-    public function getAllprivateNotes(){
+    public function show($id)
+    {
+        return $this->model->findOrFail($id);
+
+        /*
+        return $this->model->where([
+            ['id', $id]
+        ])->with('user', 'coments')->get()->first();
+        */
+    }
+
+    public function getAllprivateNotes()
+    {
         $user = auth()->user()->id;
         //Note::where('user_id', $user)->orderBy('created_at', 'DESC')->get();
         return $this->model->where('user_id', $user)->orderBy('created_at', 'DESC')->get();
     }
 
-    public function searchByTerm($term){
+    public function searchByTerm($term)
+    {
         return $this->model
-        ->where([
-            ['title', 'like', '%' . $term . '%']
-        ])
-        ->orWhere([
-            ['notecode', 'like', '%' . $term . '%']
-        ])
-        ->orderBy('created_at', 'DESC')->get();
+            ->where([
+                ['title', 'like', '%' . $term . '%']
+            ])
+            ->orWhere([
+                ['notecode', 'like', '%' . $term . '%']
+            ])
+            ->orderBy('created_at', 'DESC')->get();
     }
 
     public function getAllpublic()
-    {    
+    {
         return $this->model
             ->where('private', 0)
-            ->with('user','coments')
+            ->with('user', 'coments')
             ->orderBy('created_at', 'DESC')
             ->get();
     }
