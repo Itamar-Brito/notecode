@@ -32,9 +32,10 @@
         <div id="comentlist">
             @foreach ($getNote->coments as $coment)
                     <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments">
-                        <spam class="coment"> <b>{{$coment->user}}:</b>   {{$coment->coment}}</spam> <span class='right comentDate'>{{$coment->created_at->format('d/m/Y - H:i')}} 
+                        <spam class="coment"> <b>{{$coment->user}}: </b>   {{$coment->coment}}</spam> <span class='right comentDate'>{{$coment->created_at->format('d/m/Y - H:i')}} 
                         @if ($coment->user==auth()->user()->name)  
-                            <a href=""><i class="material-icons" style="vertical-align: -6px; color: dimgray" >delete</i></a>
+                            <a href="../coment-delete/{{$coment->id}}/viewing-note/{{$getNote->id}}"><i class="material-icons" style="vertical-align: -6px; color: dimgray" >delete</i></a>
+
                         @endif</span>
                     </div>
             @endforeach

@@ -20,4 +20,13 @@ class ComentController extends Controller
         $newComent = new ComentRepository;
         $newComent->create($id,$coment);
     }
+
+
+    public function deleteComentForm($id,$note)
+    {
+        $repository = new ComentRepository;
+        $repository->destroy($id);
+
+        return redirect('/shownote/'.$note)->with('msg', 'Comentário deletado com sucesso!');
+    }
 }

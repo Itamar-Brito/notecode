@@ -21,4 +21,9 @@ class ComentRepository
         $this->model->note_id = $id;
         $this->model->save();
     }
+
+    public function destroy($id)
+    {
+        $this->model->findOrFail($id)->delete();
+    }
 }
