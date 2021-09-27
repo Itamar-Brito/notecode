@@ -23,7 +23,7 @@ Route::get('/shownote/{id}', [NotesController::class,'showNote'])->middleware('a
 
 // coments
 Route::get('/comentar-note/{id}/coment/{coment}', [ComentController::class,'postComent'])->middleware('auth');
-Route::get('coment-delete/{id}/viewing-note/{note}', [ComentController::class,'deleteComentForm'])->middleware('auth');
+Route::delete('/coment-delete/{id}/viewing-note/{note}', [ComentController::class,'deleteComentForm'])->middleware('auth');
 
 
 

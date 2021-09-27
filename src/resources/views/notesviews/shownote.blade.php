@@ -34,7 +34,13 @@
                     <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments">
                         <spam class="coment"> <b>{{$coment->user}}: </b>   {{$coment->coment}}</spam> <span class='right comentDate'>{{$coment->created_at->format('d/m/Y - H:i')}} 
                         @if ($coment->user==auth()->user()->name)  
-                            <a href="../coment-delete/{{$coment->id}}/viewing-note/{{$getNote->id}}"><i class="material-icons" style="vertical-align: -6px; color: dimgray" >delete</i></a>
+                        <a href="" onclick="event.preventDefault();
+                        document.getElementById('deletecoment{{$getNote->id}}').submit();"><i class="material-icons" style="vertical-align: -6px; color: dimgray" >delete</i></a>
+                            
+                        <form action="/coment-delete/{{$coment->id}}/viewing-note/{{$getNote->id}}" method="post" id="deletecoment{{$getNote->id}}">
+                            @csrf
+                            @method('delete')
+                        </form>
 
                         @endif</span>
                     </div>
