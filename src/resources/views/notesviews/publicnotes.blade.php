@@ -24,7 +24,7 @@
 @section('conteudo')
 <div class="row">
     <div class="col s12 center">
-        <h4>Codigos da comunidade</h4>
+        <h4>Códigos da comunidade</h4>
     </div>
 </div>
 @foreach ($AllNotes  as $notes)
@@ -32,7 +32,11 @@
     <div class="col s12" id="post{{$notes->id}}">
             <h5><i class="devicon-{{$notes->language}}-plain"></i> {{$notes->title}} </h5>
             <span class="datapost"><i> Postado: {{$notes->created_at->format('d/m/Y - H:i')}} - <b>{{$notes->user->name}}</b></i> </span>
-        <pre><code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$notes->id}}">{{$notes->notecode}}</code></pre>         <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$notes->id}})"><i class="material-icons">content_copy</i></a>
+        <pre><code class="grey lighten-2 z-depth-2 codeblock" id="codeblock{{$notes->id}}">{{$notes->notecode}}</code></pre>         
+        
+        <div class="col s12" style="text-align: right;">
+            <a  class=" btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$notes->id}})"><i class="material-icons">content_copy</i></a>
+        </div>
 
 
     </div>

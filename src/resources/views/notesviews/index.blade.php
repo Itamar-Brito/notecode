@@ -17,6 +17,10 @@
             font-size: 23px;
             padding: 40px;
         }
+        .buscarnota{
+            height: 40px;
+            margin-bottom: 30px;
+        }
     </style>
 @endpush
 
@@ -32,13 +36,16 @@
     <p class="codigo grey-text"> Crie uma anotação para nunca mais precisar buscar em seus projetos antigos! <a href="newnote">Adicionar</a></p>
 @else
 <div class="row">
-    <nav class="col s4 push-s4 grey lighten-1">
+    <div class="col s4">
+        <i class="material-icons right" style="font-size: 38px;color:rgb(196, 195, 195);" >search</i>
+    </div>
+    <nav class="col s4  grey lighten-1 buscarnota">
         <div class="nav-wrapper">
-          <form action="/" method="GET">
+          <form action="/" method="GET" >
             <div class="input-field  ">
-              <input id="search" type="search" required name="buscacode">
-              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-              <i class="material-icons">close</i>
+              <input id="search" type="search" required name="buscacode" >
+              <label class="label-icon" for="search"></label>
+              <i class="tiny material-icons">close</i>
             </div>
           </form>
         </div>

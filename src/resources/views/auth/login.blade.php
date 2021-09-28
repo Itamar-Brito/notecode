@@ -38,11 +38,13 @@
                         {{ __('Esqueceu a Senha?') }}
                     </a>
                 @endif
-
                 <x-jet-button class="ml-4">
                     {{ __('Entrar') }}
-                </x-jet-button>
-            </div>
+                </x-jet-button><br>
+                
+            </div><br>
+            <hr>
+            <center> <a class="" href="/register" style="color: rgb(53, 53, 163)">Registrar-se gratuitamente</a></center>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>

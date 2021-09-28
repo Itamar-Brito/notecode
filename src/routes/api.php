@@ -21,6 +21,8 @@ Route::get('totalNotesperUser', [ApiController::class, 'CountNotesPerUser']);
 Route::get('notesUser/{id}', [ApiController::class, 'notesOfUser']);
 Route::get('adressUser/{id}', [ApiController::class, 'adressofUser']);
 
+/*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
