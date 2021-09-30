@@ -16,22 +16,32 @@ use App\Http\Controllers\ComentController;
 |
 */
 
+
+/*
+|--------------------------------------------------------------------------
+| NOTES Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', [NotesController::class,'index'])->middleware('auth');
 Route::get('/newnote', [NotesController::class,'newnote'])->middleware('auth');
 Route::get('/publicnotes', [NotesController::class,'publicNote'])->middleware('auth');
 Route::get('/shownote/{id}', [NotesController::class,'showNote'])->middleware('auth');
+Route::post('/create', [NotesController::class,'createCodesform'])->middleware('auth');
+Route::delete('note-delete/{id}', [NotesController::class,'deleteCodesForm'])->middleware('auth');
+Route::put('note-edit/{id}', [NotesController::class,'editnote'])->middleware('auth');
 
-// coments
+/*
+|------------------------------------------------------------------------------
+|COMENT ROUTES
+|------------------------------------------------------------------------------
+*/
+
 Route::get('/comentar-note/{id}/coment/{coment}', [ComentController::class,'postComent'])->middleware('auth');
 Route::delete('/coment-delete/{id}/viewing-note/{note}', [ComentController::class,'deleteComentForm'])->middleware('auth');
 
 
 
-Route::post('/create', [NotesController::class,'createCodesform'])->middleware('auth');
-Route::put('note-edit/{id}', [NotesController::class,'editnote'])->middleware('auth');
-Route::delete('note-delete/{id}', [NotesController::class,'deleteCodesForm'])->middleware('auth');
-
-//Route::delete('imagens/{id}',[ImagemController::class, 'destroy'])->middleware('auth');
 
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
