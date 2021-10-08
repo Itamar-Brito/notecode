@@ -96,6 +96,20 @@
         navigator.clipboard.writeText(copyText);
         M.toast({html: 'Código Copiado!'})
     }
-    </script>
 
+        document.getElementById("comentarioInput").addEventListener('keypress', function (e) {
+        var key = e.which || e.keyCode;
+            var comentario = document.getElementById('comentarioInput').value;
+            
+                if (key === 13) {
+                    if (comentario != ''){
+                    comentar({{$getNote->id}},comentario);
+                    }else{
+                    M.toast({html: 'Comentário em branco!', classes: 'red darken-4 white-text'});
+                    }
+                }
+            }
+        );
+
+    </script>
 @endpush
