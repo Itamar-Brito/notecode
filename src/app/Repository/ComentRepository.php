@@ -13,7 +13,7 @@ class ComentRepository
     {
         $this->model = new Coment;
     }
-
+    
     public function create($id,$coment)
     {
         $this->model->coment = $coment;

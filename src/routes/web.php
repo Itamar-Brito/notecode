@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ComentController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,12 @@ Route::put('note-edit/{id}', [NotesController::class,'editnote'])->middleware('a
 Route::get('/comentar-note/{id}/coment/{coment}', [ComentController::class,'postComent'])->middleware('auth');
 Route::delete('/coment-delete/{id}/viewing-note/{note}', [ComentController::class,'deleteComentForm'])->middleware('auth');
 
-
-
+/*
+|------------------------------------------------------------------------------
+|USER ROUTES
+|------------------------------------------------------------------------------
+*/
+Route::get('user/{user}', [UserController::class, 'show'] );
 
 /*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

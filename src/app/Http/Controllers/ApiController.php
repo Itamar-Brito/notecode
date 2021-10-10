@@ -18,13 +18,17 @@ class ApiController extends Controller
 
         return response()->json([
             "message" => "Code note created"
-        ], 201);
+        ], 201)
+        ->header('Content-Type', 'application/json')
+        ->header('Accept', 'application/json');
     }
 
     public function Getnotes()
     {
         $notes = Note::get()->toJson(JSON_PRETTY_PRINT);
-        return response($notes, 200);
+        return response($notes, 200)
+            ->header('Content-Type', 'application/json')
+            ->header('Accept', 'application/json');
     }
 
 
@@ -37,7 +41,9 @@ class ApiController extends Controller
         ];
         $totalNotes = json_encode($notes, JSON_PRETTY_PRINT);
         //$totalNotes = $totalNotes->toJson(JSON_PRETTY_PRINT);
-        return response($totalNotes, 200);
+        return response($totalNotes, 200)
+        ->header('Content-Type', 'application/json')
+        ->header('Accept', 'application/json');
     }
 
     public function CountNotesPerUser()
@@ -60,7 +66,9 @@ class ApiController extends Controller
 
 
         $notesforUser = json_encode($notesforUser, JSON_PRETTY_PRINT);
-        return response($notesforUser, 200);
+        return response($notesforUser, 200)
+        ->header('Content-Type', 'application/json')
+        ->header('Accept', 'application/json');
     }
 
     public function notesOfUser($id)
@@ -69,17 +77,8 @@ class ApiController extends Controller
 
 
         $totalCodesOfUser = $totalCodesOfUser->toJson(JSON_PRETTY_PRINT);
-        return response($totalCodesOfUser, 200);
-    }
-
-    
-    public function adressofUser($id)
-    {
-        $cep = User::where('id', $id)->first();
-
-        // https://viacep.com.br/ws/83070152/json/
-        $jsonurl = "https://viacep.com.br/ws/" . $cep->cep . "/json/";
-        $json = file_get_contents($jsonurl);
-        return response($json, 200);
+        return response($totalCodesOfUser, 200)
+        ->header('Content-Type', 'application/json')
+        ->header('Accept', 'application/json');
     }
 }

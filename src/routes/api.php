@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,14 @@ Route::get('notes', [ApiController::class, 'Getnotes']);
 Route::get('totalnotes', [ApiController::class, 'CountNotes']);
 Route::get('totalNotesperUser', [ApiController::class, 'CountNotesPerUser']);
 Route::get('notesUser/{id}', [ApiController::class, 'notesOfUser']);
-Route::get('adressUser/{id}', [ApiController::class, 'adressofUser']);
+
+/*
+|--------------------------------------------------------------------------
+| User API
+|--------------------------------------------------------------------------
+|*/
+
+Route::get('adressUser/{id}', [UserController::class, 'adressofUser']);
 
 /*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
