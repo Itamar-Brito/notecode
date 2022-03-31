@@ -17,8 +17,9 @@ class NotesRepository
 
     public function create(Request $request, bool $fromApi = false)
     {
+
         $this->model->title = $request->title;
-        $this->model->language = $request->language;
+        $this->model->language = $request->language ?? "";
         $this->model->private = $request->private == "on" ? 1 : 0;
         $this->model->notecode = $request->notecode;
         $this->model->user_id = $fromApi ? 1 : auth()->user()->id;

@@ -8,7 +8,7 @@
         border-style:groove;
         border-color: rgb(179, 179, 179);
     }
-    
+
 </style>
 @endpush
 
@@ -41,6 +41,7 @@
                         <option value="javascript" data-icon="/img/devicons/css3.svg" class="left">CSS</option>
                         <option value="python" data-icon="/img/devicons/python.svg" class="left">Python</option>
                         <option value="java" data-icon="/img/devicons/java.svg" class="left">Java</option>
+                        <option value="docker" data-icon="/img/devicons/docker.svg" class="left">Docker</option>
                         <option value="" data-icon="" class="left">Outra</option>
                       </select>
                       <label>Liguagem</label>
@@ -57,9 +58,9 @@
         </div>
     </form>
 </div>
-@endsection 
+@endsection
 
 
 @push('scripts')
- 
+
 @endpush
