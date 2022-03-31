@@ -42,6 +42,7 @@
                         <option value="python" data-icon="/img/devicons/python.svg" class="left">Python</option>
                         <option value="java" data-icon="/img/devicons/java.svg" class="left">Java</option>
                         <option value="docker" data-icon="/img/devicons/docker.svg" class="left">Docker</option>
+                        <option value="linux" data-icon="/img/devicons/linux.svg" class="left">linux-cmd</option>
                         <option value="" data-icon="" class="left">Outra</option>
                       </select>
                       <label>Liguagem</label>
