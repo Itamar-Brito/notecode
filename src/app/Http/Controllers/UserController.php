@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    //teste adelano
     public function show(User $user)
     {
        $userData = new UserRepository;
        return $userData->showById($user);
     }
 
- 
+
     public function adressofUser($id)
     {
         $addressUser = new UserRepository;
@@ -28,6 +29,6 @@ class UserController extends Controller
 
         //$user = User::findOrFail($id);
         //return   $user->notes;
-        
+
     }
 }
