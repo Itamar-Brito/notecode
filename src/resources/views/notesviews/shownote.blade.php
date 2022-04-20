@@ -19,7 +19,7 @@
     <div class="col s12">
         <h5><i class="devicon-{{$getNote->language}}-plain"></i> {{$getNote->title}} </h5>
         <span class="datapost"><i> Postado: {{$getNote->created_at->format('d/m/Y - H:i')}} - <b>{{$getNote->user->name}}</b></i> </span>
-        <pre><code class="grey lighten-2 z-depth-2 " id="codeblockk{{$getNote->id}}">{{$getNote->notecode}}</code></pre>        
+        <pre><code class="grey lighten-2 z-depth-2 " id="codeblockk{{$getNote->id}}">{{$getNote->notecode}}</code></pre>
         <div class="col s12" style="text-align: right;">
             <a  class="btn-flat grey lighten-2 grey-text bntActions" onclick="copyToClipboard({{$getNote->id}})"><i class="material-icons">content_copy</i></a>
         </div>
@@ -35,11 +35,11 @@
         <div id="comentlist">
             @foreach ($getNote->coments as $coment)
                     <div class="col s11 push-s1 z-depth-2 grey lighten-2 coments">
-                        <spam class="coment"> <b>{{$coment->user}}: </b>   {{$coment->coment}}</spam> <span class='right comentDate'>{{$coment->created_at->format('d/m/Y - H:i')}} 
-                        @if ($coment->user==auth()->user()->name)  
+                        <spam class="coment"> <b>{{$coment->user}}: </b>   {{$coment->coment}}</spam> <span class='right comentDate'>{{$coment->created_at->format('d/m/Y - H:i')}}
+                        @if ($coment->user==auth()->user()->name)
                         <a href="" onclick="event.preventDefault();
                         document.getElementById('deletecoment{{$getNote->id}}').submit();"><i class="material-icons" style="vertical-align: -6px; color: dimgray" >delete</i></a>
-                            
+
                         <form action="/coment-delete/{{$coment->id}}/viewing-note/{{$getNote->id}}" method="post" id="deletecoment{{$getNote->id}}">
                             @csrf
                             @method('delete')
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-@endsection 
+@endsection
 
 
 
@@ -100,7 +100,7 @@
         document.getElementById("comentarioInput").addEventListener('keypress', function (e) {
         var key = e.which || e.keyCode;
             var comentario = document.getElementById('comentarioInput').value;
-            
+
                 if (key === 13) {
                     if (comentario != ''){
                     comentar({{$getNote->id}},comentario);
