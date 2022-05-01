@@ -43,4 +43,11 @@ class UserRepository
         return $this->model->all();
     }
 
+
+    public function getUserWithNotes($id)
+    {
+
+        return $this->model->whereId($id)->with('notes')->get();
+    }
+
 }

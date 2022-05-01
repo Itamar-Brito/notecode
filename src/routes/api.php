@@ -28,7 +28,7 @@ Route::get('notesUser/{id}', [ApiController::class, 'notesOfUser']);
 |*/
 
 Route::get('adressUser/{id}', [UserController::class, 'adressofUser']);
-Route::get('notes/{id}', [UserController::class, 'notes']);
+Route::get('notes/{id}', [UserController::class, 'notesByUser']);
 
 /*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

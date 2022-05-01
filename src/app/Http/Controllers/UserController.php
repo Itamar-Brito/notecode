@@ -8,27 +8,26 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     public function show(User $user)
     {
-       $userData = new UserRepository;
-       return $userData->showById($user);
+       return $this->userRepository->showById($user);
     }
 
 
     public function adressofUser($id)
     {
-        $addressUser = new UserRepository;
-        return $addressUser->getAdressById($id);
+        return $this->userRepository->getAdressById($id);
     }
 
-    public function notes($id)
+    public function notesByUser($id)
     {
-        $user = User::whereId($id);
-        return $user->with('notes')->get();
-
-        //$user = User::findOrFail($id);
-        //return   $user->notes;
-
+       return $this->userRepository->getUserWithNotes($id);
     }
 }
