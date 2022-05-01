@@ -9,18 +9,25 @@ use Illuminate\Http\Request;
 
 class NotesController extends Controller
 {
+
+    protected $notesRepository;
+
+    public function __construct(NotesRepository $notesRepository)
+    {
+        $this->notesRepository = $notesRepository;
+    }
+
     public function index()
     {
         $user = auth()->user()->id;
 
         $buscacode = request('buscacode');
 
-        $myCodes = new NotesRepository;
 
         if ($buscacode) {
-            $notecodes = $myCodes->searchByTerm($buscacode);
+            $notecodes = $this->notesRepository->searchByTerm($buscacode);
         } else {
-            $notecodes = $myCodes->getAllprivateNotes();
+            $notecodes = $this->notesRepository->getAllprivateNotes();
         }
 
 
@@ -34,40 +41,35 @@ class NotesController extends Controller
 
     public function createCodesform(Request $request)
     {
-        $repository = new NotesRepository;
-        $repository->create($request);
+        $this->notesRepository->create($request);
 
         return redirect('/')->with('msg', 'Código Criado com sucesso!');;
     }
 
     public function editnote(Request $request)
     {
-
-        Note::findOrFail($request->id)->update($request->all());
+        $this->notesRepository->update($request);
 
         return redirect('/')->with('msg', 'Código editado com sucesso!');
     }
 
     public function deleteCodesForm($id)
     {
-        $repository = new NotesRepository;
-        $repository->destroy($id);
+        $this->notesRepository->destroy($id);
 
         return redirect('/')->with('msg', 'Código deletado com sucesso!');
     }
 
     public function publicNote()
     {
-        $AllNotes = new NotesRepository;
-        $AllNotes = $AllNotes->getAllpublic();
+        $AllNotes = $this->notesRepository->getAllpublic();
         $loggedUser = auth()->user()->name;
         return view('notesviews.publicnotes', compact('AllNotes', 'loggedUser'));
     }
 
     public function showNote($id)
     {
-        $note = new NotesRepository;
-        $getNote = $note->show($id);
+        $getNote = $this->notesRepository->show($id);
 
         return view('notesviews.shownote', compact('getNote'));
     }

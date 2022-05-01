@@ -35,6 +35,7 @@ class NotesRepository
         $this->model->findOrFail($id)->delete();
     }
 
+
     public function show($id)
     {
         return $this->model->findOrFail($id);
@@ -46,12 +47,14 @@ class NotesRepository
         */
     }
 
+
     public function getAllprivateNotes()
     {
         $user = auth()->user()->id;
         //Note::where('user_id', $user)->orderBy('created_at', 'DESC')->get();
         return $this->model->where('user_id', $user)->orderBy('created_at', 'DESC')->get();
     }
+
 
     public function searchByTerm($term)
     {
@@ -65,6 +68,7 @@ class NotesRepository
             ->orderBy('created_at', 'DESC')->get();
     }
 
+
     public function getAllpublic()
     {
         return $this->model
@@ -72,5 +76,28 @@ class NotesRepository
             ->with('user', 'coments')
             ->orderBy('created_at', 'DESC')
             ->get();
+    }
+
+
+    public function update(Request $request){
+        $this->model->findOrFail($request->id)->update($request->all());
+    }
+
+
+    public function countTotalNotes()
+    {
+        return $this->model->all()->count();
+    }
+
+
+    public function countTotalNotesByUser($id)
+    {
+        return $this->model->where('user_id', $id)->count();
+    }
+
+
+    public function getNotesByUser($id)
+    {
+        return $this->model->select("user_id", 'notecode' , 'id', 'created_at', 'updated_at')->where('user_id', $id)->get();
     }
 }

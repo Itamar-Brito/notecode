@@ -16,9 +16,9 @@ use App\Http\Controllers\UserController;
 |
 */
 Route::post('createnodes', [ApiController::class, 'createCodes']);
-Route::get('notes', [ApiController::class, 'Getnotes']);
-Route::get('totalnotes', [ApiController::class, 'CountNotes']);
-Route::get('totalNotesperUser', [ApiController::class, 'CountNotesPerUser']);
+Route::get('notes', [ApiController::class, 'getnotes']);
+Route::get('totalnotes', [ApiController::class, 'countNotes']);
+Route::get('totalNotesperUser', [ApiController::class, 'countNotesPerUser']);
 Route::get('notesUser/{id}', [ApiController::class, 'notesOfUser']);
 
 /*

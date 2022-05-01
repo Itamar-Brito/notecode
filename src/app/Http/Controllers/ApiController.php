@@ -6,15 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\User;
 use App\Repository\NotesRepository;
+use App\Repository\UserRepository;
 
 class ApiController extends Controller
 {
+
     private $fromApi = true;
+
+    protected $noteRepository;
+
+    protected $userRepository;
+
+    public function __construct(NotesRepository $noteRepository, UserRepository $userRepository)
+    {
+        $this->noteRepository = $noteRepository;
+        $this->userRepository = $userRepository;
+    }
+
 
     public function createCodes(Request $request)
     {
-        $repository = new NotesRepository;
-        $repository->create($request, $this->fromApi);
+        $this->noteRepository->create($request, $this->fromApi);
 
         return response()->json([
             "message" => "Code note created"
@@ -23,42 +35,39 @@ class ApiController extends Controller
         ->header('Accept', 'application/json');
     }
 
-    public function Getnotes()
+    public function getnotes()
     {
-        $notes = Note::get()->toJson(JSON_PRETTY_PRINT);
+
+        $notes = $this->noteRepository->getAllpublic()->toJson(JSON_PRETTY_PRINT);
         return response($notes, 200)
             ->header('Content-Type', 'application/json')
             ->header('Accept', 'application/json');
     }
 
 
-    public function CountNotes()
+    public function countNotes()
     {
-        //$notes = Note::all();
-        $notes = Note::all()->count();
+
         $notes = [
-            "total_notes" => $notes,
+            "total_notes" => $this->noteRepository->countTotalNotes(),
         ];
+
         $totalNotes = json_encode($notes, JSON_PRETTY_PRINT);
-        //$totalNotes = $totalNotes->toJson(JSON_PRETTY_PRINT);
+
         return response($totalNotes, 200)
         ->header('Content-Type', 'application/json')
         ->header('Accept', 'application/json');
     }
 
-    public function CountNotesPerUser()
+    public function countNotesPerUser()
     {
-        $User = User::all();
-
         $notesforUser = [];
 
-        foreach ($User as $user) {
-
-            $totalItens = Note::where('user_id', $user->id)->count();
+        foreach ( $this->userRepository->getAllUsers() as $user ) {
 
             $nUser = [
                 "usuario" => $user->name,
-                "total_de_Codigos" => $totalItens
+                "total_de_Codigos" => $this->noteRepository->countTotalNotesByUser($user->id)
             ];
 
             array_push($notesforUser, $nUser);
@@ -73,11 +82,9 @@ class ApiController extends Controller
 
     public function notesOfUser($id)
     {
-        $totalCodesOfUser = Note::select("user_id", 'id', 'created_at', 'updated_at')->where('user_id', $id)->get();
-
-
-        $totalCodesOfUser = $totalCodesOfUser->toJson(JSON_PRETTY_PRINT);
-        return response($totalCodesOfUser, 200)
+        return response(
+            $this->noteRepository->getNotesByUser($id)->toJson(JSON_PRETTY_PRINT)
+        , 200)
         ->header('Content-Type', 'application/json')
         ->header('Accept', 'application/json');
     }

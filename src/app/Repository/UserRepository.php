@@ -13,7 +13,7 @@ class UserRepository
     {
         $this->model = new User;
     }
-/* 
+/*
     public function showById($id){
         return $this->model->findOrFail($id);
     } */
@@ -36,6 +36,11 @@ class UserRepository
             "Content-Type"=> "application/json",
             "Accept" => "application/json"
         ]);
+    }
+
+    public function getAllUsers()
+    {
+        return $this->model->all();
     }
 
 }
