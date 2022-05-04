@@ -31,7 +31,6 @@ class NotesRepository
 
     public function destroy($id)
     {
-        //Note::findOrFail($id)->delete()
         $this->model->findOrFail($id)->delete();
     }
 
@@ -39,19 +38,12 @@ class NotesRepository
     public function show($id)
     {
         return $this->model->findOrFail($id);
-
-        /*
-        return $this->model->where([
-            ['id', $id]
-        ])->with('user', 'coments')->get()->first();
-        */
     }
 
 
     public function getAllprivateNotes()
     {
         $user = auth()->user()->id;
-        //Note::where('user_id', $user)->orderBy('created_at', 'DESC')->get();
         return $this->model->where('user_id', $user)->orderBy('created_at', 'DESC')->get();
     }
 
