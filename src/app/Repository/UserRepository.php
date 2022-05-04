@@ -23,20 +23,6 @@ class UserRepository
         return $user;
     }
 
-    public function getAdressById($id)
-    {
-
-    $cep = $this->model->whereId($id)->first();
-
-             // https://viacep.com.br/ws/    83070152      /json/
-    $jsonurl = "https://viacep.com.br/ws/" . $cep->cep . "/json/";
-    $json = file_get_contents($jsonurl);
-
-    return response($json, 200)->withHeaders([
-            "Content-Type"=> "application/json",
-            "Accept" => "application/json"
-        ]);
-    }
 
     public function getAllUsers()
     {
@@ -50,4 +36,9 @@ class UserRepository
         return $this->model->whereId($id)->with('notes')->get();
     }
 
+
+    public function getFirstById($id)
+    {
+        return $this->model->whereId($id)->first();
+    }
 }

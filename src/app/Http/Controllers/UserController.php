@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Repository\UserRepository;
+use App\Services\GetUserAdressFromViaCepService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     protected $userRepository;
+    protected $getUserAdressFromViaCepService;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, GetUserAdressFromViaCepService $getUserAdressFromViaCepService)
     {
         $this->userRepository = $userRepository;
+        $this->getUserAdressFromViaCepService = $getUserAdressFromViaCepService;
     }
 
     public function show(User $user)
@@ -23,7 +26,7 @@ class UserController extends Controller
 
     public function adressofUser($id)
     {
-        return $this->userRepository->getAdressById($id);
+        return $this->getUserAdressFromViaCepService->getAdressById($id);
     }
 
     public function notesByUser($id)
